@@ -1,0 +1,13 @@
+* {
+    background-color: rgb(126, 175, 175);
+}
+
+h1 {
+    background-color: rgb(236, 14, 14);
+    font-style: italic;
+}
+
+p {
+    font-weight: bold;
+    font-size: x-large;
+}
