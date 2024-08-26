@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Example</title>
+
+    <script>
+        function printName(){
+            let firstname = document.getElementById("fname");
+            let lastname = document.getElementById("lname");
+            console.log(firstname, lastname);
+            
+        }
+    </script>
+    <style>
+        #main-div{
+            margin: 50px;
+            background-color: cadetblue;
+        }
+    </style>
+</head>
+<body>
+<div id="main-div">
+    <form action="" method="GET">
+       
+        <div>
+            <label for="fname">First Name: </label>
+            <input type="text" id="fname" name="fname" placeholder="Enter first name">
+        </div>
+        <br>
+        <div>
+            <label for="lname">Last Name: </label>
+            <input type="text" id="lname" name="lname" placeholder="Enter last name">
+        </div>
+        <br>
+        <div>
+            <label for="password">Password: </label>
+            <input type="password" id="password" name="lname" placeholder="password" maxlength="10" minlength="4">
+        </div>
+        <br>
+        <div>
+            <label for="email">Email: </label>
+            <input type="email" id="email" name="email" placeholder="email">
+        </div>
+        <br>
+        <div>
+            <label for="phone">Phone: </label>
+            <input type="tel" id="phone" name="phone" placeholder="phone">
+        </div>
+        <br>
+        <div>
+            <label for="bdate">Birth Date: </label>
+            <input type="date" id="bdate" name="bdate" placeholder="birthday">
+        </div>
+        <br>
+        <div>
+            <input type="radio" name="title">
+            <label>Mr.</label>
+            <input type="radio" name="title">
+            <label>Mrs.</label>
+            <input type="radio" name="title">
+            <label>PHD</label>
+        </div>
+        <br>
+        <div>
+            <label for="payment">Payment: </label>
+            <select name="payment" id="payment">
+                <option value="vista">Vista</option>
+                <option value="mastercard">Mastercard</option>
+                <option value="debit">Debit Card</option>
+                <option value="cradit">Cradit card</option>
+            </select>
+        </div>
+        <br>
+        <div>
+            <button type="reset">Reset</button>
+            <button type="submit" onclick="printName();">Submit</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iframe Page</title>
+</head>
+<body>
+    <h1>Hello</h1>
+    <h3 id="greet">Buddey!</h3>
+     <iframe src="https://www.youtube.com//" frameborder="0"></iframe>
+     <br>
+     <button onclick="doSomthing();" style="background-color: black; color: green; border-radius: 5px;">Click me</button>
+     
+</body>
+<script>
+    function doSomthing(){
+        let name = "Akash Yadav"
+        document.getElementById("greet").innerHTML=name
+    }
+</script>
+</html>
