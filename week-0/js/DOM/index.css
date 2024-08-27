@@ -1,0 +1,53 @@
+* {
+    background-color: black;
+}
+
+.heading {
+    font-style: normal;
+    color: cadetblue;
+}
+
+.heading-small {
+    font-family: 'Segoe UI';
+    font-style: oblique;
+    background-color: burlywood;
+    color: blueviolet;
+    border: 2px solid green;
+    padding-inline-start: 10px;
+}
+
+.content {
+    color: antiquewhite;
+    border: 5px solid gray;
+    height: fit-content;
+    width: fit-content;
+    padding: 20px;
+    margin-top: 10%;
+    margin-left: 25%;
+}
+
+
+.list {
+    font-family: cursive;
+    font-size: large;
+}
+
+.list-1 {
+    color: blue;
+}
+
+.list-2 {
+    color: aquamarine;
+}
+
+.list-3 {
+    color: chocolate;
+}
+
+.list-4 {
+    color: red;
+}
+
+.list-5 {
+    color: cornflowerblue;
+}
