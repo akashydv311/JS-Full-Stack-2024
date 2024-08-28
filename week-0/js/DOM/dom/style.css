@@ -1,0 +1,63 @@
+.content1 {
+    border: solid gray;
+    height: fit-content;
+    width: fit-content;
+    padding: 20px;
+    margin-left: 27%;
+    margin-top: 12%;
+    color: antiquewhite;
+    background-color: cadetblue;
+}
+
+.content2 {
+    background-color: tomato;
+    padding: 20px;
+}
+
+.small-heading {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular';
+    font-weight: bold;
+    font-style: normal;
+    color: greenyellow;
+    padding-left: 20%;
+}
+
+.body {
+    background-color: black;
+}
+
+#heading {
+    color: black;
+    padding: 20px;
+}
+
+.listiteams {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: normal;
+}
+
+.iteam-1 {
+    color: blue;
+}
+
+.iteam-2 {
+    color: aqua;
+}
+
+.iteam-3 {
+    color: yellow;
+}
+
+.iteam-4 {
+    color: black;
+}
+
+.iteam-5 {
+    color: blue;
+}
+
+
+
+/* * {
+    background-color: black;
+} */
