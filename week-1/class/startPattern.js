@@ -22,4 +22,18 @@ function summAll(start, end) {
     }
 }
 
-summAll(1, 5);
+// driver code
+summAll(231, 456);
+
+
+function sumStartEnd(startIndex, endIndex) {
+    let sum = 0;
+    for (let i = startIndex; i <= endIndex; i++) {
+        sum += i;
+    }
+    console.log("Ans For Verification: ", sum);
+
+}
+
+// driver code
+sumStartEnd(231, 456);
