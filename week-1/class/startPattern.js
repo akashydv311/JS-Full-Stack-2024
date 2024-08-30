@@ -1,16 +1,16 @@
 
 // print pattern 
-function pattern1() {
-    for (let i = 0; i <= 4; i++) {
+function pattern1(numberOfRow) {
+    for (let i = 0; i <= numberOfRow; i++) {
         let col = "";
         for (let j = 0; j <= i; j++) {
-            col = col + "* ";
+            col = col + "*";
         }
         console.log(col);
     }
 }
 // driver code
-pattern1();
+pattern1(10);
 
 
 
@@ -23,7 +23,7 @@ function summAll(start, end) {
 }
 
 // driver code
-summAll(231, 456);
+summAll(2, 4);
 
 
 function sumStartEnd(startIndex, endIndex) {
