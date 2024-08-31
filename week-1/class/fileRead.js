@@ -26,3 +26,12 @@ function readFromFile(err, data) {
 const result = fs.readFile("class/input.txt", "utf8", readFromFile);
 
 
+// Async Function of fileread
+
+setTimeout(() => {
+    const data = fs.readFileSync('class/input.txt', 'UTF-8')
+    console.log("Read Data From File: ", data);
+}, 1000 / 2);
+
+console.log("End's Here");
+
