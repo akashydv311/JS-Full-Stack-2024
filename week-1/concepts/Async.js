@@ -1,3 +1,6 @@
+// http://latentflip.com/
+
+
 
 // setTimeOut is not give you a gurienty that the code will run in that pertculr time
 // Dues: it is a outSide of v8 call WEBAPI so it get the result and wait is even loop
@@ -28,6 +31,7 @@ setTimeout(function () {
 // If js thred busy in somware then even loop have to wait
 // setTime out result is waiting in the even loop aea because js thred is busy in the heavy expancice task
 
+/*
 
 taffTask();
 
@@ -44,5 +48,28 @@ function taffTask() {
     console.log(count);
 }
 
+
+*/
+
+
+
+
+
+
+
+
+
+
+// Synchronous
+
+[23, 34, 45, 56, 67].forEach(function printData(i) {
+    console.log(i);
+})
+
+// Asynchoronous
+
+function logData(i) {
+    console.log(i);
+}
 
 
