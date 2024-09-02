@@ -7,7 +7,18 @@
   - `npm run test-anagram`
 */
 
+
 function isAnagram(str1, str2) {
+
+  let tempStr = "";
+
+  for (let i = str1.length - 1; i >= 0; i--) {
+    tempStr += str1[i];
+  }
+  if (tempStr === str2) {
+    return true;
+  }
+  return false;
 
 }
 
