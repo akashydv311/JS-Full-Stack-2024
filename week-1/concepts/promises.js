@@ -55,3 +55,25 @@ console.log(result);
 
 result.then(goingToBuyPen);
 
+
+
+
+
+
+
+
+// Using promises
+
+// Main diffrence bitween callbacks and promises
+
+/*
+
+function readFromFile(contant) {
+    console.log(contant);
+}
+
+fs.readFile('concept/a.txt', readFromFile)
+
+fs.readFile('a.txt').then(readFromFile)
+
+*/
