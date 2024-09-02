@@ -42,3 +42,6 @@ setTimeout(function getFunction1() {
     }, 4000);
 
 }, 2000)
+
+
+// console.log();
