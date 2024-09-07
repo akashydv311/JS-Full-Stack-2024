@@ -5,10 +5,6 @@ const app = express()
 const port = 3000
 
 
-app.get('/:input', (req, res) => {
-    res.send("Look at rounts!");
-})
-
 
 function firstRequest(req, res) {
     res.send('Hello World!')
@@ -20,15 +16,15 @@ function addNum(num1, num2) {
 }
 
 app.get('/add', (req, res) => {
-    var num01 = req.query.num1;
+    var num01 = Number(req.query.num1);
     // console.log(num01);
-    var num02 = req.query.num2;
+    var num02 = Number(req.query.num2);
     var answer = "Sum is: " + Number(addNum(num01, num02));
     res.send(answer)
 })
 
 app.get('/inputsum', (req, res) => {
-    var counter = req.query.counter;
+    var counter = Number(req.query.counter);
     var calculateSum = sum(counter);
     var answer = "Anwer is: " + calculateSum;
     res.send(answer)
@@ -78,9 +74,13 @@ app.get('/readfile', (req, res) => {
 })
 
 
+app.get('/:input', (req, res) => {
+    res.send("Look at rounts!");
+})
+
+
 function started(req, res) {
     console.log(`Example app listening on port ${port}`)
-
 }
 app.listen(port, started)
 
