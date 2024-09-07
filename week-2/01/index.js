@@ -4,10 +4,35 @@ const fs = require('fs')
 const app = express()
 const port = 3000
 
+
+app.get('/:input', (req, res) => {
+    res.send("Look at rounts!");
+})
+
+
 function firstRequest(req, res) {
     res.send('Hello World!')
 }
 app.get('/', firstRequest)
+
+function addNum(num1, num2) {
+    return num1 + num2;
+}
+
+app.get('/add', (req, res) => {
+    var num01 = req.query.num1;
+    // console.log(num01);
+    var num02 = req.query.num2;
+    var answer = "Sum is: " + Number(addNum(num01, num02));
+    res.send(answer)
+})
+
+app.get('/inputsum', (req, res) => {
+    var counter = req.query.counter;
+    var calculateSum = sum(counter);
+    var answer = "Anwer is: " + calculateSum;
+    res.send(answer)
+})
 
 
 function sum(counter) {
@@ -38,15 +63,19 @@ function fileContand(err, data) {
     }
 }
 
-async function readMyFile(req, res) {
-    let contant = await fs.readFile('a.txt', 'utf-8', fileContand)
-    setTimeout(() => {
-        let msg = "File Contant - " + contant
-        res.send(msg)
-    }, 3000)
+// async function readMyFile(req, res) {
+//     let contant = await fs.readFile('a.txt', 'utf-8', fileContand)
+//     setTimeout(() => {
+//         let msg = "File Contant - " + contant
+//         res.send(msg)
+//     }, 3000)
 
-}
-app.get('/readfile', readMyFile)
+// }
+app.get('/readfile', (req, res) => {
+    let contant = fs.readFile('a.txt', 'utf-8', fileContand)
+    let msg = "File Contant - " + contant
+    res.send(msg)
+})
 
 
 function started(req, res) {
