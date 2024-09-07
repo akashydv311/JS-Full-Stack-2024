@@ -1,5 +1,6 @@
 
 const express = require('express')
+const fs = require('fs')
 const app = express()
 const port = 3000
 
@@ -25,6 +26,28 @@ function calculateSum(req, res) {
 }
 
 app.get('/sum', calculateSum)
+
+
+// read file 
+
+function fileContand(err, data) {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log(data);
+    }
+}
+
+async function readMyFile(req, res) {
+    let contant = await fs.readFile('a.txt', 'utf-8', fileContand)
+    setTimeout(() => {
+        let msg = "File Contant - " + contant
+        res.send(msg)
+    }, 3000)
+
+}
+app.get('/readfile', readMyFile)
+
 
 function started(req, res) {
     console.log(`Example app listening on port ${port}`)
