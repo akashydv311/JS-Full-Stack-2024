@@ -11,6 +11,7 @@ function firstRequest(req, res) {
 }
 app.get('/', firstRequest)
 
+
 function addNum(num1, num2) {
     return num1 + num2;
 }
@@ -33,12 +34,13 @@ app.get('/inputsum', (req, res) => {
 
 function sum(counter) {
     let sum = 0;
-    for (let i = 0; i < counter; i++) {
+    for (let i = 0; i <= counter; i++) {
         sum += i;
     }
-    console.log(sum);
+    // console.log(sum);
     return sum;
 }
+
 
 function calculateSum(req, res) {
     let result = sum(100);
@@ -47,6 +49,23 @@ function calculateSum(req, res) {
 }
 
 app.get('/sum', calculateSum)
+
+function handelSum(req, res) {
+    // var counter = parseInt(req.query.counter)
+    var counter = parseInt(req.headers.counter);
+    console.log(typeof counter);
+
+    if (isNaN(counter) || counter < 0) {
+        res.send(400).json({ error: 'invalid counter!' })
+    }
+
+    var answer = sum(counter)
+    // console.log(answer);
+    res.json({ result: answer })
+}
+
+app.post('/handelsum', handelSum)
+
 
 
 // read file 
@@ -74,9 +93,9 @@ app.get('/readfile', (req, res) => {
 })
 
 
-app.get('/:input', (req, res) => {
-    res.send("Look at rounts!");
-})
+// app.get('/:input', (req, res) => {
+//     res.send("Look at rounts!");
+// })
 
 
 function started(req, res) {
