@@ -10,11 +10,31 @@ const port = 3001;
 //     next();
 // }
 
-// mideelware
+// mideelware 
 app.use(bodyParser.json())
 
+function givePage(req, res) {
 
-app.post('/handelsum', handelSum)
+    res.sendFile(__dirname + '/index.html')
+
+    // var obj = {
+    //     html: `
+    //     <html lang="en">
+    //     <head>
+    //         <title>Hello From Page</title>
+    //     </head>
+    //     <body>
+    //         <h1>Hi There</h1>
+    //     </body>
+    //     </html>
+    //     `
+    // }
+    // res.send(obj.html)
+}
+
+app.get('/', givePage)
+
+
 
 function calculateSum(counter) {
     let sum = 0;
@@ -32,7 +52,7 @@ function calculateMulti(counter) {
     return multi;
 }
 
-function handelSum(req, res) {
+function handelSumMulti(req, res) {
 
     var counter = req.body.counter;
 
@@ -44,8 +64,23 @@ function handelSum(req, res) {
         multi: calcuatedMulti
     }
     res.status(200).send(answerObject)
-
 }
+app.post('/handelsummulti', handelSumMulti)
+
+
+
+function handelSum(req, res) {
+
+    var counter = req.body.counter;
+
+    var calculatedSum = calculateSum(counter)
+
+    var answerObject = {
+        sum: calculatedSum,
+    }
+    res.status(200).send(answerObject)
+}
+app.post('/handelsum', handelSum)
 
 
 app.listen(port, () => {
