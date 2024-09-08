@@ -46,4 +46,159 @@ const app = express();
 
 app.use(bodyParser.json());
 
+let todo = [];
+
+/*
+ 1.GET /todos - Retrieve all todo items
+    Description: Returns a list of all todo items.
+    Response: 200 OK with an array of todo items in JSON format.
+    Example: GET http://localhost:3000/todos
+*/
+
+function getTodos(req, res) {
+  if (todo.length === 0) {
+    res.status(200).send("Empty Todo!")
+  } else {
+    res.status(200).send(todo)
+  }
+}
+app.get('/todos', getTodos)
+
+
+/*
+  2.GET /todos/:id - Retrieve a specific todo item by ID
+    Description: Returns a specific todo item identified by its ID.
+    Response: 200 OK with the todo item in JSON format if found, or 404 Not Found if not found.
+    Example: GET http://localhost:3000/todos/123
+*/
+function getTodoById(req, res) {
+  const todoId = req.params.id;
+  let fountTodo = null;
+
+  for (let i = 0; i < todo.length; i++) {
+    if (parseInt(todoId) == parseInt(todo[i].id)) {
+      fountTodo = todo[i]
+      break
+    }
+  }
+  if (fountTodo) {
+    res.status(200).send(fountTodo)
+  } else {
+    res.status(404).send({
+      id: todoId,
+      message: "Todo not found",
+    })
+  }
+
+}
+app.get('/todos/:id', getTodoById)
+
+
+
+/*
+  3. POST /todos - Create a new todo item
+    Description: Creates a new todo item.
+    Request Body: JSON object representing the todo item.
+    Response: 201 Created with the ID of the created todo item in JSON format. eg: {id: 1}
+    Example: POST http://localhost:3000/todos
+    Request Body: { "title": "Buy groceries", "completed": false, description: "I should buy groceries" }
+*/
+let ID = 100;
+
+function createTodo(req, res) {
+  let newTitle = req.body.title;
+  let newCompleted = req.body.completed;
+  let newDescription = req.body.description;
+
+  let newList = {
+    id: ++ID,
+    title: newTitle,
+    completed: newCompleted,
+    description: newDescription
+  }
+
+  todo.push(newList)
+  // console.log(todo);
+  res.status(201).send(newList)
+}
+app.post('/todos', createTodo)
+
+
+
+/*
+  4. PUT /todos/:id - Update an existing todo item by ID
+    Description: Updates an existing todo item identified by its ID.
+    Request Body: JSON object representing the updated todo item.
+    Response: 200 OK if the todo item was found and updated, or 404 Not Found if not found.
+    Example: PUT http://localhost:3000/todos/123
+    Request Body: { "title": "Buy groceries", "completed": true }
+*/
+
+function updateTodo(req, res) {
+  let todoId = req.params.id; // for router values
+  let todoTitle = req.body.title; // for body values
+  let todoCompleted = req.body.completed;
+  let todoDesc = req.body.description;
+
+
+  // if found with id
+  let fountTodo = false;
+  for (let i = 0; i < todo.length; i++) {
+    if (parseInt(todoId) === parseInt(todo[i].id)) {
+      fountTodo = true
+      todo[i].title = todoTitle;
+      todo[i].completed = todoCompleted;
+      todo[i].description = todoDesc;
+    }
+  }
+
+  if (fountTodo) {
+    res.status(200).send("todo item was found and updated")
+  } else {
+    res.status(404).send("Not Found")
+  }
+
+}
+app.put('/todos/:id', updateTodo)
+
+
+
+
+/*
+  5. DELETE /todos/:id - Delete a todo item by ID
+    Description: Deletes a todo item identified by its ID.
+    Response: 200 OK if the todo item was found and deleted, or 404 Not Found if not found.
+    Example: DELETE http://localhost:3000/todos/123
+*/
+function deleteTodo(req, res) {
+
+  let todoId = req.params.id;
+  let fountTodo = false;
+
+  for (let i = 0; i < todo.length; i++) {
+    if (parseInt(todoId) === parseInt(todo[i].id)) {
+      todo.splice(i, 1)
+      fountTodo = true
+      break
+    }
+  }
+  if (fountTodo) {
+    res.status(200).send(todo)
+  } else {
+    res.status(404).send("Error Not Found!")
+  }
+}
+app.delete('/todos/:id', deleteTodo)
+
+
+
+app.get('*', (req, res) => {
+  res.status(404).send("Error Not Found!")
+})
+
+// app.listen(3000, () => {
+//   console.log(`listning on port ${3000}`);
+// })
+
+
 module.exports = app;
