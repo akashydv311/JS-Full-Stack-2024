@@ -5,6 +5,13 @@ const app = express()
 const port = 3000
 
 
+function middelware1(req, res, next) {
+    var counter = req.headers.counter;
+    console.log("From middelware-1 ", counter);
+    next();
+}
+
+app.use(middelware1);
 
 function firstRequest(req, res) {
     res.send('Hello World!')
@@ -34,10 +41,10 @@ app.get('/inputsum', (req, res) => {
 
 function sum(counter) {
     let sum = 0;
-    for (let i = 0; i <= counter; i++) {
+    for (let i = 0; i <= Number(counter); i++) {
         sum += i;
     }
-    // console.log(sum);
+    console.log(sum);
     return sum;
 }
 
@@ -52,7 +59,7 @@ app.get('/sum', calculateSum)
 
 function handelSum(req, res) {
     // var counter = parseInt(req.query.counter)
-    var counter = parseInt(req.headers.counter);
+    var counter = (req.headers.counter);
     console.log(typeof counter);
 
     if (isNaN(counter) || counter < 0) {
@@ -61,7 +68,7 @@ function handelSum(req, res) {
 
     var answer = sum(counter)
     // console.log(answer);
-    res.json({ result: answer })
+    res.send("Ans is: " + answer)
 }
 
 app.post('/handelsum', handelSum)
