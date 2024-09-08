@@ -71,7 +71,7 @@ app.post('/handelsummulti', handelSumMulti)
 
 function handelSum(req, res) {
 
-    var counter = req.body.counter;
+    var counter = req.query.counter;
 
     var calculatedSum = calculateSum(counter)
 
@@ -80,7 +80,7 @@ function handelSum(req, res) {
     }
     res.status(200).send(answerObject)
 }
-app.post('/handelsum', handelSum)
+app.get('/handelsum', handelSum)
 
 
 app.listen(port, () => {
