@@ -5,8 +5,32 @@
     </head>
     <script>
         function onPress(){
+
+            function dataCallback(data){
+                let presentElement = document.getElementById('mainArea')
+                // console.log(presentElement);
+                presentElement.innerHTML = JSON.stringify(data)               
+                
+            }
+            function getDataCallback(res){
+                res.json().then(dataCallback)
+            }
+
+            function getData(){
+                fetch('http://localhost:3000/todos/', {
+                    method: "GET",
+                }).then(getDataCallback)
+            }
+
+           getData();
+
+           
+            let inputTitle = document.getElementById("title").value;
+
+            let inputDescription = document.getElementById("description").value;
+
             function parsedResponce(data){
-                console.log(data);
+                console.log("Data Sent", data);
             }
             function callback(res){
                 res.json().then(parsedResponce)
@@ -15,8 +39,8 @@
             fetch('http://localhost:3000/todos', {
                 method: "POST",
                 body: JSON.stringify({
-                        title: "Gym",
-                        description: "Go to gym 7 to 9"
+                        title: inputTitle,
+                        description: inputDescription
                     }),
                 headers : {
                     "Content-Type": "application/json"
@@ -24,7 +48,7 @@
             }).then(callback)
         }
     </script>
-
+<!-- 
     <style>
         *{
             background-color: black;
@@ -41,19 +65,24 @@
             background-color: white;
         }
         
-    </style>
+    </style> -->
 
     <body>
         <main>
             <div>
                 <br><br>
                 Todo Title
-                <input type="text" name="title" id=""> 
+                <input type="text" name="title" id="title"> 
                 <br><br>
                 Todo Description
-                <input type="text" name="description" id="">
+                <input type="text" name="description" id="description">
                 <br><br>
                 <button onclick="onPress()">Send Todo</button>
+
+                <br><br>
+                <div id="mainArea">
+                    Hi There!
+                </div>
             </div>
         </main>
     </body>
