@@ -4,12 +4,47 @@
         <title>Todo App</title>
     </head>
     <script>
+        function deleteDone(){
+            console.log("delete Done");
+        }
+         function deleteTodo(id){
+                console.log(id);
+                fetch('http://localhost:3000/todos/'+id, {
+                method: "DELETE",
+                headers : {
+                    "Content-Type": "application/json"
+                }
+            }).then(deleteDone)
+            }
+            
+
+
         function onPress(){
 
             function dataCallback(data){
-                let presentElement = document.getElementById('mainArea')
-                // console.log(presentElement);
-                presentElement.innerHTML = JSON.stringify(data)               
+                // presentElement.innerHTML = JSON.stringify(data)     
+                for(let i=0; i<data.length; i++){
+                    let parentElement = document.getElementById('mainArea')
+
+                let childElement = document.createElement('div')
+
+                        let grandChild1 = document.createElement('span')
+                        grandChild1.innerHTML = data[i].title
+
+                        let grandChild2 = document.createElement('span')
+                        grandChild2.innerHTML = data[i].description
+
+                        let grandChild3 = document.createElement('button')
+                        grandChild3.innerHTML = "Delete"
+                        grandChild3.setAttribute("onclick", "deleteTodo("+ data[i].id +")")
+
+                    childElement.appendChild(grandChild1)
+                    childElement.appendChild(grandChild2)
+                    childElement.appendChild(grandChild3)
+
+                parentElement.appendChild(childElement) 
+                }
+                
                 
             }
             function getDataCallback(res){
@@ -31,6 +66,24 @@
 
             function parsedResponce(data){
                 console.log("Data Sent", data);
+                let parentElement = document.getElementById('mainArea')
+
+                let childElement = document.createElement('div')
+
+                        let grandChild1 = document.createElement('span')
+                        grandChild1.innerHTML = data.title
+
+                        let grandChild2 = document.createElement('span')
+                        grandChild2.innerHTML = data.description
+
+                        let grandChild3 = document.createElement('button')
+                        grandChild3.innerHTML = "Delete"
+
+                    childElement.appendChild(grandChild1)
+                    childElement.appendChild(grandChild2)
+                    childElement.appendChild(grandChild3)
+
+                parentElement.appendChild(childElement) 
             }
             function callback(res){
                 res.json().then(parsedResponce)
@@ -48,25 +101,6 @@
             }).then(callback)
         }
     </script>
-<!-- 
-    <style>
-        *{
-            background-color: black;
-        }
-        div{
-            height: 200px;
-            width: 400px;
-            background-color: antiquewhite  ;
-        }
-        input{
-            background-color: white;
-        }
-        button{
-            background-color: white;
-        }
-        
-    </style> -->
-
     <body>
         <main>
             <div>
